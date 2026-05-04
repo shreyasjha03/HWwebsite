@@ -1,96 +1,78 @@
+import Image from "next/image";
 import Link from "next/link";
 import { GraduationCap, Mail, MapPin, Phone } from "lucide-react";
 
 const footerLinks = {
-  services: [
-    { label: "University Applications", href: "/services#study-abroad" },
-    { label: "Test Preparation", href: "/services#test-prep" },
-    { label: "Visa Services", href: "/services#visa" },
-    { label: "Scholarships", href: "/services#scholarships" },
-    { label: "Career Guidance", href: "/services#career" },
-    { label: "Post Landing", href: "/services#post-landing" },
-  ],
-  destinations: [
-    { label: "United States", href: "/services?country=usa" },
-    { label: "United Kingdom", href: "/services?country=uk" },
-    { label: "Canada", href: "/services?country=canada" },
-    { label: "Australia", href: "/services?country=australia" },
-    { label: "Germany", href: "/services?country=germany" },
-    { label: "France", href: "/services?country=france" },
+  categories: [
+    { label: "Study Abroad", href: "/services?category=Study%20Abroad" },
+    { label: "Work Abroad", href: "/services?category=Career%20Guidance" },
+    { label: "Language Preparation", href: "/services?category=Test%20Prep" },
+    { label: "Education Financing", href: "/services?category=Scholarships" },
+    { label: "Visa & Immigration", href: "/services?category=Visa%20%26%20Docs" },
+    { label: "Post Landing Support", href: "/services?category=Post%20Landing" },
   ],
   company: [
-    { label: "About Us", href: "/about" },
-    { label: "Blog", href: "/blog" },
+    { label: "About", href: "/about" },
+    { label: "Contact Us", href: "/contact" },
     { label: "Careers", href: "/contact" },
-    { label: "Contact", href: "/contact" },
-    { label: "Privacy Policy", href: "/contact" },
-    { label: "Terms of Service", href: "/contact" },
+    { label: "Become a Mentor", href: "/mentors" },
+    { label: "Terms & Conditions", href: "/contact" },
+    { label: "Cancellation Policy", href: "/contact" },
+  ],
+  support: [
+    { label: "Help & Support", href: "/contact" },
+    { label: "Community Guidelines", href: "/blog" },
+    { label: "Pricing Guidelines", href: "/pricing" },
   ],
 };
 
 export function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-border">
+    <footer className="bg-white border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 lg:gap-12">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-display font-bold text-sm">E</span>
+        <div className="grid gap-10 xl:grid-cols-[1.8fr_1fr_1fr_1fr]">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-3 mb-4">
+              <div className="relative h-10 w-10">
+                <Image
+                  src="/Logo HW 1.png"
+                  alt="HumbleWalking"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <span className="font-display font-bold text-xl text-foreground">
                 HumbleWalking
               </span>
             </Link>
             <p className="text-sm text-muted leading-relaxed mb-6">
-              Your trusted partner for global education. From university selection
-              to post-landing support.
+              Your edtech + study abroad partner for university shortlisting,
+              mentorship, visas and settling in abroad.
             </p>
-            <div className="space-y-3">
-              <div className="flex items-center gap-2 text-sm text-muted">
+            <div className="space-y-3 text-sm text-muted">
+              <div className="flex items-center gap-2">
                 <Mail size={16} />
-                <span>hello@humblewalking.com</span>
+                <span>support@humblewalking.com</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted">
+              <div className="flex items-center gap-2">
                 <Phone size={16} />
-                <span>+1 (555) 000-0000</span>
+                <span>+91 9876-543-210</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-muted">
+              <div className="flex items-center gap-2">
                 <MapPin size={16} />
-                <span>Global, Remote-first</span>
+                <span>India</span>
               </div>
             </div>
           </div>
 
           <div>
             <h4 className="font-display font-semibold text-sm text-foreground mb-4">
-              Services
+              Categories
             </h4>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
+            <ul className="space-y-3 text-sm text-muted">
+              {footerLinks.categories.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
-              Destinations
-            </h4>
-            <ul className="space-y-3">
-              {footerLinks.destinations.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted hover:text-primary transition-colors"
-                  >
+                  <Link href={link.href} className="hover:text-foreground transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -102,13 +84,10 @@ export function Footer() {
             <h4 className="font-display font-semibold text-sm text-foreground mb-4">
               Company
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-sm text-muted">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted hover:text-primary transition-colors"
-                  >
+                  <Link href={link.href} className="hover:text-foreground transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -116,37 +95,30 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-1">
+          <div>
             <h4 className="font-display font-semibold text-sm text-foreground mb-4">
-              Newsletter
+              Support
             </h4>
-            <p className="text-sm text-muted mb-4">
-              Get weekly study abroad tips and scholarship alerts.
-            </p>
-            <form className="space-y-2">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="w-full px-3 py-2 rounded-lg border border-border bg-white text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <button
-                type="submit"
-                className="w-full bg-primary text-white text-sm font-medium px-4 py-2 rounded-lg hover:bg-primary-dark transition-colors"
-              >
-                Subscribe
-              </button>
-            </form>
+            <ul className="space-y-3 text-sm text-muted">
+              {footerLinks.support.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-foreground transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-10 border-t border-border flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted">
             &copy; {new Date().getFullYear()} HumbleWalking. All rights reserved.
           </p>
-          <div className="flex items-center gap-1 text-sm text-muted">
+          <div className="flex items-center gap-2 text-sm text-muted">
             <span>Made with</span>
             <GraduationCap size={16} />
-            <span>for students worldwide</span>
+            <span>for learners and mentors worldwide</span>
           </div>
         </div>
       </div>

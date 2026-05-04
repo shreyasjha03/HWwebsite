@@ -13,7 +13,7 @@ import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
 import { CTABannerSection } from "@/components/sections/CTABannerSection";
 
 export const metadata: Metadata = {
-  title: "EduBridge — Your Global Education Partner",
+  title: "HumbleWalking — Your Global Education Partner",
   description:
     "Complete study abroad services — from university selection to post-landing support. Connect with expert mentors and navigate your international education journey.",
 };

@@ -37,20 +37,20 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      value: "hello@humblewalking.com",
+      value: "support@humblewalking.com",
       description: "We reply within 24 hours",
     },
     {
       icon: Phone,
       title: "Phone",
-      value: "+1 (555) 000-0000",
-      description: "Mon-Fri, 9am-6pm EST",
+      value: "+91 9876-543-210",
+      description: "Mon-Fri, 10am-6pm IST",
     },
     {
       icon: MapPin,
       title: "Office",
-      value: "Remote-first, Global",
-      description: "Serving students worldwide",
+      value: "India",
+      description: "Serving students globally",
     },
   ];
 
@@ -152,7 +152,7 @@ export default function ContactPage() {
                         <Input
                           label="Phone (optional)"
                           type="tel"
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="+91 98765-43210"
                           value={formData.phone}
                           onChange={(e) =>
                             setFormData({ ...formData, phone: e.target.value })

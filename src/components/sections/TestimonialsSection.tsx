@@ -7,7 +7,7 @@ const testimonials = [
   {
     id: "t1",
     name: "Arjun Mehta",
-    image: "/images/testimonials/arjun.jpg",
+    image: "/images/mentors/mentor-placeholder.svg",
     role: "MBA Student",
     destination: "USA — Wharton",
     quote:
@@ -17,7 +17,7 @@ const testimonials = [
   {
     id: "t2",
     name: "Fatima Al-Rashid",
-    image: "/images/testimonials/fatima.jpg",
+    image: "/images/mentors/mentor-placeholder.svg",
     role: "MSc Computer Science",
     destination: "UK — Imperial College",
     quote:
@@ -27,7 +27,7 @@ const testimonials = [
   {
     id: "t3",
     name: "Lucas Tanaka",
-    image: "/images/testimonials/lucas.jpg",
+    image: "/images/mentors/mentor-placeholder.svg",
     role: "Undergraduate",
     destination: "Canada — U of Toronto",
     quote:

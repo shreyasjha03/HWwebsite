@@ -16,8 +16,8 @@ export const services: Service[] = [
     title: "University Shortlisting & Application",
     slug: "university-shortlisting-application",
     category: "Study Abroad",
-    price: 299,
-    currency: "USD",
+    price: 24999,
+    currency: "INR",
     description:
       "Get personalized university recommendations based on your profile, goals, and budget. We handle the entire application process from start to finish.",
     features: [
@@ -28,7 +28,7 @@ export const services: Service[] = [
       "Application tracking dashboard",
       "Unlimited email support",
     ],
-    image: "/images/services/university.jpg",
+    image: "/images/services/university.svg",
     rating: 4.9,
     reviews: 342,
     duration: "4-6 weeks",
@@ -39,8 +39,8 @@ export const services: Service[] = [
     title: "IELTS Preparation Course",
     slug: "ielts-preparation-course",
     category: "Test Prep",
-    price: 149,
-    currency: "USD",
+    price: 12499,
+    currency: "INR",
     description:
       "Comprehensive IELTS preparation with live classes, practice tests, and personalized feedback to help you achieve your target band score.",
     features: [
@@ -51,7 +51,7 @@ export const services: Service[] = [
       "1-on-1 doubt clearing sessions",
       "Score improvement guarantee",
     ],
-    image: "/images/services/ielts.jpg",
+    image: "/images/services/ielts.svg",
     rating: 4.8,
     reviews: 521,
     duration: "8 weeks",
@@ -62,8 +62,8 @@ export const services: Service[] = [
     title: "Complete Visa Filing Service",
     slug: "complete-visa-filing-service",
     category: "Visa & Docs",
-    price: 399,
-    currency: "USD",
+    price: 33299,
+    currency: "INR",
     description:
       "End-to-end visa application support including document preparation, form filling, interview coaching, and submission tracking.",
     features: [
@@ -74,7 +74,7 @@ export const services: Service[] = [
       "Application submission tracking",
       "Rejection appeal support",
     ],
-    image: "/images/services/visa.jpg",
+    image: "/images/services/visa.svg",
     rating: 4.9,
     reviews: 287,
     duration: "2-4 weeks",
@@ -85,8 +85,8 @@ export const services: Service[] = [
     title: "Scholarship Discovery & Application",
     slug: "scholarship-discovery-application",
     category: "Scholarships",
-    price: 199,
-    currency: "USD",
+    price: 16999,
+    currency: "INR",
     description:
       "Access our database of 10,000+ scholarships and get expert guidance on applications, essays, and interviews to maximize your funding.",
     features: [
@@ -97,7 +97,7 @@ export const services: Service[] = [
       "Financial aid guidance",
       "Ongoing scholarship alerts",
     ],
-    image: "/images/services/scholarship.jpg",
+    image: "/images/services/scholarship.svg",
     rating: 4.7,
     reviews: 198,
     duration: "Ongoing",
@@ -107,8 +107,8 @@ export const services: Service[] = [
     title: "Career Counseling & Roadmap",
     slug: "career-counseling-roadmap",
     category: "Career Guidance",
-    price: 99,
-    currency: "USD",
+    price: 8499,
+    currency: "INR",
     description:
       "Get a personalized career roadmap aligned with your academic goals, market trends, and long-term aspirations.",
     features: [
@@ -119,7 +119,7 @@ export const services: Service[] = [
       "Internship recommendations",
       "Follow-up consultation",
     ],
-    image: "/images/services/career.jpg",
+    image: "/images/services/career.svg",
     rating: 4.6,
     reviews: 156,
     duration: "1-2 weeks",
@@ -129,8 +129,8 @@ export const services: Service[] = [
     title: "Post-Arrival Settlement Support",
     slug: "post-arrival-settlement-support",
     category: "Post Landing",
-    price: 249,
-    currency: "USD",
+    price: 20999,
+    currency: "INR",
     description:
       "Everything you need after landing — from accommodation setup to bank accounts, local orientation, and community integration.",
     features: [
@@ -141,7 +141,7 @@ export const services: Service[] = [
       "Community & networking introductions",
       "30-day check-in support",
     ],
-    image: "/images/services/settlement.jpg",
+    image: "/images/services/settlement.svg",
     rating: 4.8,
     reviews: 134,
     duration: "30 days",
@@ -151,8 +151,8 @@ export const services: Service[] = [
     title: "GRE/GMAT Prep Program",
     slug: "gre-gmat-prep-program",
     category: "Test Prep",
-    price: 199,
-    currency: "USD",
+    price: 16999,
+    currency: "INR",
     description:
       "Master the GRE or GMAT with our structured program featuring expert instructors, adaptive practice, and score-tracking tools.",
     features: [
@@ -163,7 +163,7 @@ export const services: Service[] = [
       "AWA essay review",
       "Score improvement plan",
     ],
-    image: "/images/services/gre.jpg",
+    image: "/images/services/career.svg",
     rating: 4.7,
     reviews: 289,
     duration: "12 weeks",
@@ -173,8 +173,8 @@ export const services: Service[] = [
     title: "Statement of Purpose Writing",
     slug: "statement-of-purpose-writing",
     category: "Study Abroad",
-    price: 149,
-    currency: "USD",
+    price: 12499,
+    currency: "INR",
     description:
       "Craft a compelling SOP that stands out. Our experts help you tell your story authentically while meeting university expectations.",
     features: [
@@ -185,7 +185,7 @@ export const services: Service[] = [
       "Grammar & style polishing",
       "Final review by admissions expert",
     ],
-    image: "/images/services/sop.jpg",
+    image: "/images/services/university.svg",
     rating: 4.9,
     reviews: 412,
     duration: "1-2 weeks",
@@ -196,8 +196,8 @@ export const services: Service[] = [
     title: "Letter of Recommendation Guidance",
     slug: "lor-guidance",
     category: "Study Abroad",
-    price: 79,
-    currency: "USD",
+    price: 6999,
+    currency: "INR",
     description:
       "Get expert help with securing strong LORs — from identifying the right recommenders to drafting impactful recommendation letters.",
     features: [
@@ -208,7 +208,7 @@ export const services: Service[] = [
       "University-specific formatting",
       "Submission guidance",
     ],
-    image: "/images/services/lor.jpg",
+    image: "/images/services/university.svg",
     rating: 4.6,
     reviews: 167,
     duration: "1 week",
@@ -218,8 +218,8 @@ export const services: Service[] = [
     title: "Education Loan Assistance",
     slug: "education-loan-assistance",
     category: "Scholarships",
-    price: 129,
-    currency: "USD",
+    price: 10999,
+    currency: "INR",
     description:
       "Navigate education loans with confidence. We connect you with the best lenders and help you secure favorable terms.",
     features: [
@@ -230,7 +230,7 @@ export const services: Service[] = [
       "Collateral-free loan options",
       "Repayment planning",
     ],
-    image: "/images/services/loan.jpg",
+    image: "/images/services/scholarship.svg",
     rating: 4.5,
     reviews: 98,
     duration: "2-3 weeks",
@@ -240,8 +240,8 @@ export const services: Service[] = [
     title: "Profile Building for Top Universities",
     slug: "profile-building-top-universities",
     category: "Career Guidance",
-    price: 349,
-    currency: "USD",
+    price: 28999,
+    currency: "INR",
     description:
       "Strategic profile enhancement program designed to make your application stand out for Ivy League and top-tier universities.",
     features: [
@@ -252,7 +252,7 @@ export const services: Service[] = [
       "Leadership opportunity mapping",
       "Monthly progress reviews",
     ],
-    image: "/images/services/profile.jpg",
+    image: "/images/services/career.svg",
     rating: 4.8,
     reviews: 76,
     duration: "3-6 months",
@@ -262,8 +262,8 @@ export const services: Service[] = [
     title: "Accommodation Finder Service",
     slug: "accommodation-finder-service",
     category: "Post Landing",
-    price: 99,
-    currency: "USD",
+    price: 8499,
+    currency: "INR",
     description:
       "Find the perfect place to stay abroad. We help you compare options, negotiate leases, and settle into your new home.",
     features: [
@@ -274,7 +274,7 @@ export const services: Service[] = [
       "Neighborhood orientation",
       "Move-in checklist & support",
     ],
-    image: "/images/services/accommodation.jpg",
+    image: "/images/services/settlement.svg",
     rating: 4.7,
     reviews: 112,
     duration: "1-2 weeks",

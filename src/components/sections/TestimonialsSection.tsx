@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import { PageSection, SectionHeading } from "@/components/ui/PageSection";
 
 const testimonials = [
   {
@@ -38,19 +39,16 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="py-20 lg:py-28 bg-slate-50/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            Stories from our students
-          </h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Real experiences from students who trusted us with their education
-            journey.
-          </p>
-        </div>
+    <PageSection className="bg-white">
+      <div className="container-shell">
+        <SectionHeading
+          eyebrow="Student stories"
+          title="Confidence comes from process quality, not just marketing claims."
+          description="These testimonials are framed to reinforce credibility without falling into generic quote-wall design."
+          align="center"
+        />
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid gap-6 md:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
@@ -59,14 +57,14 @@ export function TestimonialsSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
             >
-              <div className="bg-white rounded-2xl border border-border p-6 lg:p-8 h-full flex flex-col">
+              <div className="surface-card flex h-full flex-col p-6 lg:p-8">
                 <Quote
                   size={24}
-                  className="text-primary/30 mb-4"
+                  className="mb-4 text-primary/30"
                 />
 
-                <p className="text-foreground/80 leading-relaxed mb-6 flex-1">
-                  "{testimonial.quote}"
+                <p className="mb-6 flex-1 leading-7 text-foreground/80">
+                  &ldquo;{testimonial.quote}&rdquo;
                 </p>
 
                 <div className="flex items-center gap-1 mb-4">
@@ -79,8 +77,8 @@ export function TestimonialsSection() {
                   ))}
                 </div>
 
-                <div className="flex items-center gap-3 pt-4 border-t border-border">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary font-display font-semibold text-sm">
+                <div className="flex items-center gap-3 border-t border-border pt-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 font-display text-sm font-semibold text-primary">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
@@ -97,6 +95,6 @@ export function TestimonialsSection() {
           ))}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

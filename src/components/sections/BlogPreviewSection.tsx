@@ -2,51 +2,49 @@ import { blogPosts } from "@/lib/data/blog";
 import { Card, CardBody } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { PageSection, SectionHeading } from "@/components/ui/PageSection";
 
 export function BlogPreviewSection() {
   const recentPosts = blogPosts.slice(0, 3);
 
   return (
-    <section className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-14 gap-4">
-          <div>
-            <Badge variant="primary" className="mb-4">
-              Blog
-            </Badge>
-            <h2 className="text-3xl lg:text-4xl font-bold text-foreground">
-              Latest insights & guides
-            </h2>
-          </div>
-          <Link href="/blog">
-            <Button variant="outline" size="sm">
-              View all articles
-              <ArrowRight size={14} className="ml-1" />
-            </Button>
-          </Link>
-        </div>
+    <PageSection className="bg-slate-50/70">
+      <div className="container-shell">
+        <SectionHeading
+          eyebrow="Resources"
+          title="Editorial content that supports product decisions, not just SEO placeholders."
+          description="The content layer is cleaner and easier to scan, with stronger hierarchy for featured and secondary reads."
+          actions={
+            <Link href="/blog">
+              <Button variant="outline" size="sm">
+                View all articles
+                <ArrowRight size={14} />
+              </Button>
+            </Link>
+          }
+        />
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {recentPosts.map((post) => (
             <Link key={post.id} href={`/blog/${post.slug}`}>
               <Card>
                 <CardBody>
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="mb-3 flex items-center gap-2">
                     <Badge variant="primary">{post.category}</Badge>
                     <span className="text-xs text-muted">{post.readTime} min read</span>
                   </div>
 
-                  <h3 className="font-display font-semibold text-lg text-foreground mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+                  <h3 className="mb-2 line-clamp-2 font-display text-lg font-semibold text-foreground transition-colors group-hover:text-primary">
                     {post.title}
                   </h3>
 
-                  <p className="text-sm text-muted leading-relaxed mb-4 line-clamp-2">
+                  <p className="mb-4 line-clamp-2 text-sm leading-6 text-muted">
                     {post.excerpt}
                   </p>
 
-                  <div className="flex items-center gap-3 text-xs text-muted pt-3 border-t border-border">
+                  <div className="flex items-center gap-3 border-t border-border pt-3 text-xs text-muted">
                     <div className="flex items-center gap-1">
                       <Calendar size={12} />
                       <span>
@@ -64,6 +62,6 @@ export function BlogPreviewSection() {
           ))}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

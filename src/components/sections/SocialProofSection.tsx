@@ -28,9 +28,9 @@ const stats = [
 
 export function SocialProofSection() {
   return (
-    <section className="py-16 bg-white border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    <section className="border-y border-border bg-white">
+      <div className="container-shell py-8 lg:py-10">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
@@ -38,15 +38,15 @@ export function SocialProofSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="text-center"
+              className="surface-muted p-5 text-left"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-light text-primary mb-4">
-                <stat.icon size={24} />
+              <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                <stat.icon size={20} />
               </div>
-              <div className="font-display font-bold text-3xl text-foreground mb-1">
+              <div className="font-display text-3xl font-semibold text-foreground">
                 {stat.value}
               </div>
-              <div className="text-sm text-muted">{stat.label}</div>
+              <div className="mt-1 text-sm text-muted">{stat.label}</div>
             </motion.div>
           ))}
         </div>

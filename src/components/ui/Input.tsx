@@ -11,14 +11,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-foreground mb-1.5">
+          <label className="mb-2 block text-sm font-medium text-foreground">
             {label}
           </label>
         )}
         <input
           ref={ref}
           className={cn(
-            "w-full px-4 py-2.5 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary",
+            "w-full rounded-2xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-muted-foreground",
+            "focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10",
             error && "border-red-400 focus:ring-red-400/50",
             className
           )}
@@ -44,13 +45,14 @@ export function Textarea({
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-sm font-medium text-foreground mb-1.5">
+        <label className="mb-2 block text-sm font-medium text-foreground">
           {label}
         </label>
       )}
       <textarea
         className={cn(
-          "w-full px-4 py-2.5 rounded-xl border border-border bg-white text-foreground placeholder:text-muted-foreground transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary resize-none",
+          "w-full resize-none rounded-2xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-muted-foreground",
+          "focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10",
           error && "border-red-400 focus:ring-red-400/50",
           className
         )}

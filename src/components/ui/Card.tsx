@@ -10,9 +10,9 @@ export function Card({ children, className, hover = true }: CardProps) {
   return (
     <div
       className={cn(
-        "bg-white rounded-2xl border border-border overflow-hidden",
+        "surface-card overflow-hidden",
         hover &&
-          "transition-all duration-300 hover:shadow-lg hover:-translate-y-1 hover:border-primary/20",
+          "transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md",
         className
       )}
     >
@@ -28,7 +28,7 @@ export function CardHeader({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <div className={cn("px-6 pt-6 pb-4", className)}>{children}</div>;
+  return <div className={cn("px-6 pt-6 pb-3", className)}>{children}</div>;
 }
 
 export function CardBody({
@@ -49,7 +49,7 @@ export function CardFooter({
   className?: string;
 }) {
   return (
-    <div className={cn("px-6 py-4 border-t border-border", className)}>
+    <div className={cn("border-t border-border px-6 py-4", className)}>
       {children}
     </div>
   );

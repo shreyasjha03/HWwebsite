@@ -16,22 +16,24 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center font-display font-medium rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex items-center justify-center gap-2 rounded-2xl font-medium whitespace-nowrap",
+        "focus:outline-none focus:ring-4 focus:ring-primary/15 disabled:pointer-events-none disabled:opacity-50",
         {
           primary:
-            "bg-primary text-white hover:bg-primary-dark shadow-md shadow-primary/20 hover:shadow-lg hover:shadow-primary/25",
+            "bg-primary text-white shadow-sm hover:bg-primary-dark",
           secondary:
-            "bg-foreground text-background hover:bg-foreground/90 shadow-md",
+            "bg-secondary text-secondary-foreground shadow-sm hover:bg-slate-800",
           outline:
-            "border-2 border-border bg-transparent hover:bg-primary-light hover:border-primary/30 text-foreground",
+            "border border-border bg-white text-foreground hover:border-border-strong hover:bg-slate-50",
           ghost:
-            "bg-transparent hover:bg-primary-light text-foreground hover:text-primary",
+            "bg-transparent text-muted hover:bg-slate-100 hover:text-foreground",
         }[variant],
         {
-          sm: "px-4 py-2 text-sm",
-          md: "px-6 py-2.5 text-sm",
-          lg: "px-8 py-3.5 text-base",
-        }[size]
+          sm: "h-10 px-4 text-sm",
+          md: "h-11 px-5 text-sm",
+          lg: "h-12 px-6 text-base",
+        }[size],
+        className
       )}
       {...props}
     >

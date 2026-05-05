@@ -12,7 +12,6 @@ import {
   Star,
   MapPin,
   Award,
-  ArrowRight,
   Globe,
   MessageSquare,
   Calendar,

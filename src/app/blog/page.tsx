@@ -4,7 +4,7 @@ import { Footer } from "@/components/shared/Footer";
 import { blogPosts } from "@/lib/data/blog";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardBody } from "@/components/ui/Card";
-import { Calendar, Clock, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
 

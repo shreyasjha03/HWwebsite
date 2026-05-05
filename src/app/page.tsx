@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { SocialProofSection } from "@/components/sections/SocialProofSection";
 import { ServicesPreviewSection } from "@/components/sections/ServicesPreviewSection";
@@ -13,28 +11,23 @@ import { BlogPreviewSection } from "@/components/sections/BlogPreviewSection";
 import { CTABannerSection } from "@/components/sections/CTABannerSection";
 
 export const metadata: Metadata = {
-  title: "HumbleWalking — Your Global Education Partner",
+  title: "HumbleWalking — Global education planning platform",
   description:
-    "Complete study abroad services — from university selection to post-landing support. Connect with expert mentors and navigate your international education journey.",
+    "Discover expert services, connect with mentors, and manage your study abroad journey through one polished planning platform.",
 };
 
 export default function HomePage() {
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <HeroSection />
-        <SocialProofSection />
-        <ServicesPreviewSection />
-        <HowItWorksSection />
-        <MentorsPreviewSection />
-        <DestinationsSection />
-        <TestimonialsSection />
-        <BlogPreviewSection />
-        <CTABannerSection />
-      </main>
-      <Footer />
-    </>
+    <MarketingLayout>
+      <HeroSection />
+      <SocialProofSection />
+      <ServicesPreviewSection />
+      <HowItWorksSection />
+      <MentorsPreviewSection />
+      <DestinationsSection />
+      <TestimonialsSection />
+      <BlogPreviewSection />
+      <CTABannerSection />
+    </MarketingLayout>
   );
 }

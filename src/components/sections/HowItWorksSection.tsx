@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Search, FileText, Send, Home } from "lucide-react";
+import { PageSection, SectionHeading } from "@/components/ui/PageSection";
 
 const steps = [
   {
@@ -32,18 +33,16 @@ const steps = [
 
 export function HowItWorksSection() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-            How it works
-          </h2>
-          <p className="text-lg text-muted max-w-2xl mx-auto">
-            Four simple steps from where you are now to where you want to be.
-          </p>
-        </div>
+    <PageSection className="bg-slate-50/70">
+      <div className="container-shell">
+        <SectionHeading
+          eyebrow="How it works"
+          title="A simple operating model instead of scattered one-off consultations."
+          description="The experience is structured to help students make progress without losing context between experts, documents, and deadlines."
+          align="center"
+        />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
+        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
@@ -51,29 +50,25 @@ export function HowItWorksSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.15 }}
-              className="relative text-center"
+              className="surface-card relative p-6"
             >
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-10 left-[60%] w-[80%] h-px bg-gradient-to-r from-primary/30 to-transparent" />
-              )}
-
-              <div className="relative inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary-light text-primary mb-6">
-                <step.icon size={32} />
-                <div className="absolute -top-1 -right-1 w-6 h-6 bg-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+              <div className="relative mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                <step.icon size={24} />
+                <div className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-white">
                   {index + 1}
                 </div>
               </div>
 
-              <h3 className="font-display font-semibold text-lg text-foreground mb-2">
+              <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
                 {step.title}
               </h3>
-              <p className="text-sm text-muted leading-relaxed">
+              <p className="text-sm leading-6 text-muted">
                 {step.description}
               </p>
             </motion.div>
           ))}
         </div>
       </div>
-    </section>
+    </PageSection>
   );
 }

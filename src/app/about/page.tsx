@@ -1,220 +1,155 @@
 import type { Metadata } from "next";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import Link from "next/link";
+import { ArrowRight, Check, Globe, Heart, Target, Users } from "lucide-react";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
-import {
-  Target,
-  Heart,
-  Users,
-  Globe,
-  Check,
-  ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
+import { PageHero, PageSection, SectionHeading } from "@/components/ui/PageSection";
 
 export const metadata: Metadata = {
   title: "About Us — Our Mission & Story",
   description:
-    "Learn about HumbleWalking's mission to make global education accessible and guided for every student.",
+    "Learn about HumbleWalking's mission to make global education more structured, accessible, and trustworthy.",
 };
 
 const values = [
   {
     icon: Target,
-    title: "Student-First",
+    title: "Student-first clarity",
     description:
-      "Every decision we make starts with one question: does this help the student succeed?",
+      "Every product and service decision starts by reducing confusion for students and families.",
   },
   {
     icon: Heart,
-    title: "Authentic Guidance",
+    title: "Honest guidance",
     description:
-      "We believe in honest, transparent advice — never selling dreams, always providing reality-based guidance.",
+      "We favor practical recommendations over inflated promises or opaque advisory packages.",
   },
   {
     icon: Users,
-    title: "Community-Driven",
+    title: "Network effects",
     description:
-      "Our strength comes from our community of students, mentors, and experts who share knowledge freely.",
+      "Mentors, specialists, and students all contribute to a stronger support system over time.",
   },
   {
     icon: Globe,
-    title: "Global Access",
+    title: "Global accessibility",
     description:
-      "We're building a platform that makes world-class education guidance accessible to students everywhere.",
+      "High-quality education planning should not depend on geography or insider access.",
   },
-];
-
-const stats = [
-  { value: "2021", label: "Founded" },
-  { value: "25,000+", label: "Students Helped" },
-  { value: "500+", label: "Expert Mentors" },
-  { value: "40+", label: "Countries" },
 ];
 
 export default function AboutPage() {
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <h1 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-                Making global education{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-                  accessible
-                </span>{" "}
-                for everyone
-              </h1>
-              <p className="text-lg text-muted leading-relaxed mb-8">
-                HumbleWalking was born from a simple observation: millions of
-                talented students miss out on global education opportunities not
-                because they lack potential, but because they lack guidance.
-              </p>
-              <p className="text-lg text-muted leading-relaxed">
-                We built a platform that connects students with expert mentors
-                and comprehensive services — demystifying the entire study
-                abroad process from start to finish.
-              </p>
-            </div>
-          </div>
-        </section>
+    <MarketingLayout>
+      <PageHero
+        eyebrow="About HumbleWalking"
+        title="A more credible operating system for the study abroad journey."
+        description="This refresh moves the brand away from generic marketing tropes and toward a clearer product story: structure, trust, and momentum for students navigating a complex process."
+      />
 
-        <section className="py-16 lg:py-20 bg-white border-b border-border">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="font-display font-bold text-3xl lg:text-4xl text-foreground mb-1">
-                    {stat.value}
+      <PageSection className="bg-white">
+        <div className="container-shell grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {[
+            { value: "2021", label: "Founded" },
+            { value: "25,000+", label: "Students guided" },
+            { value: "500+", label: "Mentor specialists" },
+            { value: "40+", label: "Countries supported" },
+          ].map((stat) => (
+            <Card key={stat.label} hover={false}>
+              <CardBody>
+                <p className="text-3xl font-semibold text-foreground">{stat.value}</p>
+                <p className="mt-1 text-sm text-muted">{stat.label}</p>
+              </CardBody>
+            </Card>
+          ))}
+        </div>
+      </PageSection>
+
+      <PageSection className="bg-slate-50/70">
+        <div className="container-shell">
+          <SectionHeading
+            eyebrow="Values"
+            title="Designed around consistency, transparency, and calm decision-making."
+            description="The new visual system is backed by a clearer product posture as well: fewer distractions, stronger hierarchy, and more confidence in every interaction."
+            align="center"
+          />
+          <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            {values.map((value) => (
+              <Card key={value.title} hover={false}>
+                <CardBody>
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-primary">
+                    <value.icon size={22} />
                   </div>
-                  <div className="text-sm text-muted">{stat.label}</div>
+                  <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted">{value.description}</p>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </PageSection>
+
+      <PageSection className="bg-white">
+        <div className="container-shell grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+          <div>
+            <p className="eyebrow">Why students choose us</p>
+            <h2 className="mt-3 text-3xl font-semibold text-foreground">
+              Stronger process design creates better student outcomes.
+            </h2>
+            <div className="mt-6 space-y-4">
+              {[
+                "Clear service boundaries and transparent pricing",
+                "A verified mentor layer instead of generic counseling",
+                "One place to track decisions, deadlines, and next steps",
+                "Support from application planning through post-landing",
+              ].map((item) => (
+                <div key={item} className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-blue-50 text-primary">
+                    <Check size={14} />
+                  </div>
+                  <span className="text-sm leading-6 text-foreground">{item}</span>
                 </div>
               ))}
             </div>
           </div>
-        </section>
 
-        <section className="py-20 lg:py-28 bg-slate-50/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-14">
-              <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                Our values
-              </h2>
-              <p className="text-lg text-muted max-w-2xl mx-auto">
-                These principles guide everything we do.
-              </p>
-            </div>
-
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {values.map((value) => (
-                <Card key={value.title} hover={false}>
-                  <CardBody>
-                    <div className="w-12 h-12 rounded-xl bg-primary-light text-primary flex items-center justify-center mb-4">
-                      <value.icon size={24} />
-                    </div>
-                    <h3 className="font-display font-semibold text-lg text-foreground mb-2">
-                      {value.title}
-                    </h3>
-                    <p className="text-sm text-muted leading-relaxed">
-                      {value.description}
-                    </p>
-                  </CardBody>
-                </Card>
-              ))}
+          <div className="surface-card bg-slate-950 p-8 text-white lg:p-10">
+            <p className="text-lg leading-8 text-slate-200">
+              &ldquo;HumbleWalking helped me bring order to a process that felt overwhelming. The combination of mentor feedback and task structure made every next step obvious.&rdquo;
+            </p>
+            <div className="mt-6">
+              <p className="font-medium">Arjun Mehta</p>
+              <p className="text-sm text-slate-400">MBA admit, Wharton</p>
             </div>
           </div>
-        </section>
+        </div>
+      </PageSection>
 
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-              <div>
-                <h2 className="text-3xl font-bold text-foreground mb-6">
-                  Why students choose HumbleWalking
-                </h2>
-                <div className="space-y-4">
-                  {[
-                    "Comprehensive services covering the entire journey",
-                    "Verified mentors with real-world experience",
-                    "Transparent pricing with no hidden costs",
-                    "Dedicated support at every step",
-                    "Proven track record with 94% visa success rate",
-                  ].map((item) => (
-                    <div key={item} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 shrink-0">
-                        <Check size={14} className="text-primary" />
-                      </div>
-                      <span className="text-foreground">{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-10 lg:p-14">
-                <blockquote className="text-xl lg:text-2xl font-display font-medium text-foreground leading-relaxed mb-6">
-                  "HumbleWalking helped me navigate the complex MBA application
-                  process and I got into my dream school with a 50% scholarship.
-                  I couldn't have done it without their guidance."
-                </blockquote>
-                <div>
-                  <div className="font-medium text-foreground">Arjun Mehta</div>
-                  <div className="text-sm text-muted">
-                    MBA Student, Wharton
-                  </div>
-                </div>
-              </div>
+      <PageSection>
+        <div className="container-shell">
+          <div className="surface-card bg-slate-950 p-10 text-center text-white lg:p-14">
+            <p className="eyebrow text-slate-400">Next step</p>
+            <h2 className="mt-3 text-3xl font-semibold">See the redesigned experience in action.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+              Create an account, explore the dashboard, or talk to the team about the right support path.
+            </p>
+            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link href="/signup">
+                <Button variant="secondary" size="lg" className="bg-white text-slate-950 hover:bg-slate-100">
+                  Create account
+                  <ArrowRight size={16} />
+                </Button>
+              </Link>
+              <Link href="/dashboard">
+                <Button variant="outline" size="lg" className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
+                  View dashboard
+                </Button>
+              </Link>
             </div>
           </div>
-        </section>
-
-        <section className="py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary-dark p-10 lg:p-16 text-center">
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
-                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white/5 rounded-full blur-2xl" />
-              </div>
-              <div className="relative">
-                <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
-                  Join our mission
-                </h2>
-                <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8">
-                  Whether you're a student starting your journey or an expert
-                  who wants to guide others — there's a place for you at
-                  HumbleWalking.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link href="/contact">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="bg-white text-primary hover:bg-white/90"
-                    >
-                      Get in touch
-                      <ArrowRight size={18} className="ml-2" />
-                    </Button>
-                  </Link>
-                  <Link href="/services">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="border-white/30 text-white hover:bg-white/10"
-                    >
-                      Explore services
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </PageSection>
+    </MarketingLayout>
   );
 }

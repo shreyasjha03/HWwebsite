@@ -3,15 +3,14 @@ import Link from "next/link";
 
 export function AnnouncementBar() {
   return (
-    <div className="bg-primary text-white py-2 text-center text-sm font-medium relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary-dark to-primary opacity-90" />
-      <div className="relative z-10 max-w-7xl mx-auto px-4 flex items-center justify-center gap-2">
-        <span>New: Free 15-min consultation for first-time users</span>
+    <div className="border-b border-blue-100 bg-blue-50 text-blue-950">
+      <div className="container-shell flex min-h-10 items-center justify-center gap-2 py-2 text-center text-sm font-medium">
+        <span>Free 15-minute admissions planning session for first-time students</span>
         <Link
-          href="/contact"
-          className="inline-flex items-center gap-1 hover:underline"
+          href="/signup"
+          className="inline-flex items-center gap-1 text-blue-700 hover:text-blue-800"
         >
-          Learn more <ArrowRight size={14} />
+          Claim it <ArrowRight size={14} />
         </Link>
       </div>
     </div>

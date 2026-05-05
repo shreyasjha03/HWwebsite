@@ -5,7 +5,7 @@ import { Navbar } from "@/components/shared/Navbar";
 import { Footer } from "@/components/shared/Footer";
 import { blogPosts } from "@/lib/data/blog";
 import { Badge } from "@/components/ui/Badge";
-import { Calendar, Clock, ArrowLeft } from "lucide-react";
+import { Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 interface BlogPostPageProps {

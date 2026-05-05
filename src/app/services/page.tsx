@@ -1,174 +1,138 @@
 "use client";
 
-import { useState, useEffect, Suspense } from "react";
+import { useMemo, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
-import { services, serviceCategories } from "@/lib/data/services";
-import { Card, CardBody } from "@/components/ui/Card";
+import Link from "next/link";
+import { ArrowRight, Clock, Search, Star } from "lucide-react";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { Star, Clock, ArrowRight, Search, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { Card, CardBody } from "@/components/ui/Card";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { Input } from "@/components/ui/Input";
+import { PageHero, PageSection } from "@/components/ui/PageSection";
+import { Select } from "@/components/ui/Select";
+import { serviceCategories, services } from "@/lib/data/services";
 import { formatPrice } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
 
 function ServicesContent() {
   const searchParams = useSearchParams();
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const initialCategory = searchParams.get("category");
+  const [selectedCategory, setSelectedCategory] = useState(
+    initialCategory && serviceCategories.includes(initialCategory)
+      ? initialCategory
+      : "All"
+  );
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("popular");
 
-  useEffect(() => {
-    const category = searchParams.get("category");
-    if (category && serviceCategories.includes(category)) {
-      setSelectedCategory(category);
-    }
-  }, [searchParams]);
-
-  const filteredServices = services
-    .filter((s) => {
-      const matchCategory =
-        selectedCategory === "All" || s.category === selectedCategory;
-      const matchSearch =
-        !searchQuery ||
-        s.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        s.description.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchCategory && matchSearch;
-    })
-    .sort((a, b) => {
-      if (sortBy === "popular") {
-        if (a.popular && !b.popular) return -1;
-        if (!a.popular && b.popular) return 1;
-        return b.reviews - a.reviews;
-      }
-      if (sortBy === "price-low") return a.price - b.price;
-      if (sortBy === "price-high") return b.price - a.price;
-      if (sortBy === "rating") return b.rating - a.rating;
-      return 0;
-    });
+  const filteredServices = useMemo(
+    () =>
+      services
+        .filter((service) => {
+          const categoryMatch =
+            selectedCategory === "All" || service.category === selectedCategory;
+          const searchMatch =
+            !searchQuery ||
+            service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            service.description.toLowerCase().includes(searchQuery.toLowerCase());
+          return categoryMatch && searchMatch;
+        })
+        .sort((a, b) => {
+          if (sortBy === "popular") return Number(Boolean(b.popular)) - Number(Boolean(a.popular)) || b.reviews - a.reviews;
+          if (sortBy === "rating") return b.rating - a.rating;
+          if (sortBy === "price-low") return a.price - b.price;
+          if (sortBy === "price-high") return b.price - a.price;
+          return 0;
+        }),
+    [searchQuery, selectedCategory, sortBy]
+  );
 
   return (
     <>
-      <section className="py-8 lg:py-12 border-b border-border bg-white sticky top-16 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4">
+      <PageHero
+        eyebrow="Services marketplace"
+        title="Expert-led services with cleaner scope, pricing, and next steps."
+        description="The listing experience now uses a tighter grid, a more disciplined filter bar, and clearer pricing hierarchy."
+        meta={
+          <>
+            <Badge variant="primary">{services.length} services</Badge>
+            <Badge>{serviceCategories.length - 1} categories</Badge>
+          </>
+        }
+      />
+
+      <section className="sticky top-[72px] z-30 border-b border-border bg-white/94 backdrop-blur-xl">
+        <div className="container-shell py-4">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
               {serviceCategories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                    selectedCategory === category
-                      ? "bg-primary text-white shadow-md shadow-primary/20"
-                      : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-                  }`}
+                  className={
+                    "rounded-full px-4 py-2 text-sm font-medium " +
+                    (selectedCategory === category
+                      ? "bg-slate-950 text-white"
+                      : "border border-border bg-white text-muted hover:text-foreground")
+                  }
                 >
                   {category}
                 </button>
               ))}
             </div>
 
-            <div className="flex items-center gap-3 ml-auto w-full lg:w-auto">
-              <div className="relative flex-1 lg:flex-none lg:w-64">
-                <Search
-                  className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                  size={16}
-                />
-                <input
-                  type="text"
-                  placeholder="Search services..."
+            <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_220px] lg:w-[460px]">
+              <div className="relative">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
+                <Input
+                  placeholder="Search services"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 rounded-xl border border-border bg-white text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+                  className="pl-10"
                 />
               </div>
-
-              <div className="relative">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="appearance-none pl-4 pr-10 py-2 rounded-xl border border-border bg-white text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 cursor-pointer"
-                >
-                  <option value="popular">Most Popular</option>
-                  <option value="rating">Highest Rated</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                </select>
-                <ChevronDown
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none"
-                  size={16}
-                />
-              </div>
+              <Select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                <option value="popular">Most popular</option>
+                <option value="rating">Highest rated</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+              </Select>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-12 lg:py-16 bg-slate-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-sm text-muted mb-8">
-            Showing {filteredServices.length} service
-            {filteredServices.length !== 1 ? "s" : ""}
-            {selectedCategory !== "All" && ` in ${selectedCategory}`}
+      <PageSection className="bg-slate-50/70">
+        <div className="container-shell">
+          <p className="mb-6 text-sm text-muted">
+            Showing {filteredServices.length} services
+            {selectedCategory !== "All" ? ` in ${selectedCategory}` : ""}
           </p>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={selectedCategory + searchQuery + sortBy}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-            >
+          {filteredServices.length ? (
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredServices.map((service) => (
                 <Card key={service.id}>
-                  <CardBody className="flex flex-col h-full">
-                    <div className="flex items-start justify-between mb-4">
+                  <CardBody className="flex h-full flex-col">
+                    <div className="mb-4 flex items-center justify-between gap-3">
                       <Badge variant="primary">{service.category}</Badge>
-                      {service.popular && (
-                        <Badge variant="warning">Popular</Badge>
-                      )}
+                      {service.popular ? <Badge variant="warning">Popular</Badge> : null}
                     </div>
-
-                    <h3 className="font-display font-semibold text-xl text-foreground mb-2">
-                      {service.title}
-                    </h3>
-
-                    <p className="text-sm text-muted leading-relaxed mb-4 flex-1">
-                      {service.description}
-                    </p>
-
-                    <div className="space-y-2 mb-4">
+                    <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                    <p className="mt-3 flex-1 text-sm leading-6 text-muted">{service.description}</p>
+                    <div className="mt-5 space-y-2">
                       {service.features.slice(0, 3).map((feature) => (
-                        <div
-                          key={feature}
-                          className="flex items-start gap-2 text-sm"
-                        >
-                          <div className="w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 shrink-0">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                          </div>
-                          <span className="text-muted">{feature}</span>
+                        <div key={feature} className="flex items-center gap-3 text-sm text-muted">
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                          <span>{feature}</span>
                         </div>
                       ))}
-                      {service.features.length > 3 && (
-                        <p className="text-xs text-primary font-medium">
-                          +{service.features.length - 3} more features
-                        </p>
-                      )}
                     </div>
-
-                    <div className="flex items-center gap-4 mb-4 text-sm text-muted">
+                    <div className="mt-6 flex items-center gap-4 text-sm text-muted">
                       <div className="flex items-center gap-1">
-                        <Star
-                          size={14}
-                          className="fill-amber-400 text-amber-400"
-                        />
-                        <span className="font-medium text-foreground">
-                          {service.rating}
-                        </span>
+                        <Star size={14} className="fill-amber-400 text-amber-400" />
+                        <span className="font-medium text-foreground">{service.rating}</span>
                         <span>({service.reviews})</span>
                       </div>
                       <div className="flex items-center gap-1">
@@ -176,77 +140,47 @@ function ServicesContent() {
                         <span>{service.duration}</span>
                       </div>
                     </div>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <span className="font-display font-bold text-2xl text-foreground">
-                        {formatPrice(service.price)}
-                      </span>
+                    <div className="mt-6 flex items-center justify-between border-t border-border pt-5">
+                      <div>
+                        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Price</p>
+                        <p className="mt-1 text-2xl font-semibold text-foreground">
+                          {formatPrice(service.price)}
+                        </p>
+                      </div>
                       <Link href={`/services/${service.slug}`}>
-                        <Button variant="outline" size="sm">
+                        <Button variant="outline">
                           View details
-                          <ArrowRight size={14} className="ml-1" />
+                          <ArrowRight size={16} />
                         </Button>
                       </Link>
                     </div>
                   </CardBody>
                 </Card>
               ))}
-            </motion.div>
-          </AnimatePresence>
-
-          {filteredServices.length === 0 && (
-            <div className="text-center py-16">
-              <p className="text-lg text-muted mb-4">
-                No services found matching your criteria.
-              </p>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  setSelectedCategory("All");
-                  setSearchQuery("");
-                }}
-              >
-                Clear filters
-              </Button>
             </div>
+          ) : (
+            <EmptyState
+              title="No services match these filters"
+              description="Try a broader category or clear the search to explore the full catalog."
+              actionLabel="Clear filters"
+              onAction={() => {
+                setSelectedCategory("All");
+                setSearchQuery("");
+              }}
+            />
           )}
         </div>
-      </section>
+      </PageSection>
     </>
   );
 }
 
 export default function ServicesPage() {
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Services Marketplace
-            </h1>
-            <p className="text-lg text-muted max-w-2xl">
-              Expert-guided services for every step of your study abroad
-              journey.
-            </p>
-          </div>
-        </section>
-
-        <Suspense
-          fallback={
-            <div className="py-8 lg:py-12 border-b border-border bg-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="h-10 bg-slate-100 rounded-xl animate-pulse" />
-              </div>
-            </div>
-          }
-        >
-          <ServicesContent />
-        </Suspense>
-      </main>
-      <Footer />
-    </>
+    <MarketingLayout>
+      <Suspense fallback={<div className="container-shell py-10 text-sm text-muted">Loading services...</div>}>
+        <ServicesContent />
+      </Suspense>
+    </MarketingLayout>
   );
 }

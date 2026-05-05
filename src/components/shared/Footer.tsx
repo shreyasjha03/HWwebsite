@@ -1,39 +1,59 @@
 import Image from "next/image";
 import Link from "next/link";
-import { GraduationCap, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/Button";
 
 const footerLinks = {
-  categories: [
-    { label: "Study Abroad", href: "/services?category=Study%20Abroad" },
-    { label: "Work Abroad", href: "/services?category=Career%20Guidance" },
-    { label: "Language Preparation", href: "/services?category=Test%20Prep" },
-    { label: "Education Financing", href: "/services?category=Scholarships" },
-    { label: "Visa & Immigration", href: "/services?category=Visa%20%26%20Docs" },
-    { label: "Post Landing Support", href: "/services?category=Post%20Landing" },
+  platform: [
+    { label: "Services", href: "/services" },
+    { label: "Mentors", href: "/mentors" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Dashboard", href: "/dashboard" },
   ],
   company: [
     { label: "About", href: "/about" },
     { label: "Contact Us", href: "/contact" },
-    { label: "Careers", href: "/contact" },
-    { label: "Become a Mentor", href: "/mentors" },
-    { label: "Terms & Conditions", href: "/contact" },
-    { label: "Cancellation Policy", href: "/contact" },
+    { label: "Become a Mentor", href: "/signup" },
+    { label: "Resources", href: "/blog" },
   ],
   support: [
-    { label: "Help & Support", href: "/contact" },
-    { label: "Community Guidelines", href: "/blog" },
-    { label: "Pricing Guidelines", href: "/pricing" },
+    { label: "Student Help", href: "/contact" },
+    { label: "Consultation Booking", href: "/signup" },
+    { label: "Sign In", href: "/login" },
   ],
 };
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid gap-10 xl:grid-cols-[1.8fr_1fr_1fr_1fr]">
+    <footer className="border-t border-border bg-white">
+      <div className="container-shell py-16">
+        <div className="surface-muted mb-12 grid gap-8 p-8 lg:grid-cols-[1.3fr_0.7fr] lg:items-center lg:p-10">
+          <div className="space-y-3">
+            <p className="eyebrow">Start with clarity</p>
+            <h3 className="text-2xl font-semibold text-foreground sm:text-3xl">
+              Build your study abroad plan with one structured platform.
+            </h3>
+            <p className="max-w-2xl text-sm leading-6 text-muted sm:text-base">
+              Compare services, talk to experienced mentors, and keep every next step in one place.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row lg:justify-end">
+            <Link href="/signup">
+              <Button>
+                Create account
+                <ArrowRight size={16} />
+              </Button>
+            </Link>
+            <Link href="/contact">
+              <Button variant="outline">Talk to our team</Button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="grid gap-10 xl:grid-cols-[1.7fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="relative h-10 w-10">
+              <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-border bg-white">
                 <Image
                   src="/Logo HW 1.png"
                   alt="HumbleWalking"
@@ -41,13 +61,12 @@ export function Footer() {
                   className="object-contain"
                 />
               </div>
-              <span className="font-display font-bold text-xl text-foreground">
+              <span className="font-display text-xl font-semibold text-foreground">
                 HumbleWalking
               </span>
             </Link>
-            <p className="text-sm text-muted leading-relaxed mb-6">
-              Your edtech + study abroad partner for university shortlisting,
-              mentorship, visas and settling in abroad.
+            <p className="mb-6 max-w-sm text-sm leading-6 text-muted">
+              A production-grade guidance layer for students planning university admissions, test prep, visas, and relocation.
             </p>
             <div className="space-y-3 text-sm text-muted">
               <div className="flex items-center gap-2">
@@ -66,13 +85,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
-              Categories
+            <h4 className="mb-4 font-display text-sm font-semibold text-foreground">
+              Platform
             </h4>
             <ul className="space-y-3 text-sm text-muted">
-              {footerLinks.categories.map((link) => (
+              {footerLinks.platform.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-foreground transition-colors">
+                  <Link href={link.href} className="hover:text-foreground">
                     {link.label}
                   </Link>
                 </li>
@@ -81,13 +100,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
+            <h4 className="mb-4 font-display text-sm font-semibold text-foreground">
               Company
             </h4>
             <ul className="space-y-3 text-sm text-muted">
               {footerLinks.company.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-foreground transition-colors">
+                  <Link href={link.href} className="hover:text-foreground">
                     {link.label}
                   </Link>
                 </li>
@@ -96,13 +115,13 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
+            <h4 className="mb-4 font-display text-sm font-semibold text-foreground">
               Support
             </h4>
             <ul className="space-y-3 text-sm text-muted">
               {footerLinks.support.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="hover:text-foreground transition-colors">
+                  <Link href={link.href} className="hover:text-foreground">
                     {link.label}
                   </Link>
                 </li>
@@ -111,14 +130,17 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-10 border-t border-border flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-8 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted">
             &copy; {new Date().getFullYear()} HumbleWalking. All rights reserved.
           </p>
-          <div className="flex items-center gap-2 text-sm text-muted">
-            <span>Made with</span>
-            <GraduationCap size={16} />
-            <span>for learners and mentors worldwide</span>
+          <div className="flex items-center gap-4 text-sm text-muted">
+            <Link href="/contact" className="hover:text-foreground">
+              Privacy
+            </Link>
+            <Link href="/contact" className="hover:text-foreground">
+              Terms
+            </Link>
           </div>
         </div>
       </div>

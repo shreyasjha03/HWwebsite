@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/Input";
 import { PageHero, PageSection } from "@/components/ui/PageSection";
 import { Select } from "@/components/ui/Select";
 import { mentors } from "@/lib/data/mentors";
+import { formatPrice } from "@/lib/utils";
 
 const expertiseOptions = [
   "All",
@@ -64,7 +65,7 @@ export default function MentorsPage() {
         }
       />
 
-      <section className="sticky top-[72px] z-30 border-b border-border bg-white/94 backdrop-blur-xl">
+      <section className="sticky top-[72px] z-30 border-b border-border bg-white/90 backdrop-blur-xl">
         <div className="container-shell py-4">
           <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_220px_220px]">
             <div className="relative">
@@ -100,10 +101,10 @@ export default function MentorsPage() {
           {filteredMentors.length ? (
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredMentors.map((mentor) => (
-                <Card key={mentor.id}>
+                <Card key={mentor.id} className="group">
                   <CardBody>
                     <div className="flex items-start gap-4">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 font-display text-2xl font-semibold text-primary">
+                      <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-blue-50 font-display text-2xl font-semibold text-primary">
                         {mentor.name.charAt(0)}
                       </div>
                       <div className="min-w-0 flex-1">
@@ -138,10 +139,10 @@ export default function MentorsPage() {
                           <span className="font-medium text-foreground">{mentor.rating}</span>
                           <span className="text-muted">({mentor.reviews})</span>
                         </div>
-                        <p className="mt-1 text-sm text-muted">From ${mentor.hourlyRate}/hr</p>
+                        <p className="mt-1 text-sm text-muted">From {formatPrice(mentor.hourlyRate)}/hr</p>
                       </div>
                       <Link href={`/mentors/${mentor.id}`}>
-                        <Button variant="outline">
+                        <Button variant="outline" className="group-hover:bg-blue-50 group-hover:text-primary">
                           View profile
                           <ArrowRight size={16} />
                         </Button>

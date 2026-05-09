@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
+import { Sora, DM_Sans } from "next/font/google";
 import "./globals.css";
+
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
-    default: "EduBridge — Your Global Education Partner",
-    template: "%s | EduBridge",
+    default: "HumbleWalking — Your Global Education Partner",
+    template: "%s | HumbleWalking",
   },
   description:
     "Complete study abroad services — from university selection to post-landing support. Connect with expert mentors and navigate your international education journey.",
@@ -16,20 +29,20 @@ export const metadata: Metadata = {
     "scholarships",
     "mentorship",
   ],
-  authors: [{ name: "EduBridge" }],
-  creator: "EduBridge",
+  authors: [{ name: "HumbleWalking" }],
+  creator: "HumbleWalking",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://edubridge.com",
-    siteName: "EduBridge",
-    title: "EduBridge — Your Global Education Partner",
+    url: "https://humblewalking.com",
+    siteName: "HumbleWalking",
+    title: "HumbleWalking — Your Global Education Partner",
     description:
       "Complete study abroad services — from university selection to post-landing support.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EduBridge — Your Global Education Partner",
+    title: "HumbleWalking - Your Global Education Partner",
     description:
       "Complete study abroad services — from university selection to post-landing support.",
   },
@@ -45,7 +58,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth antialiased">
+    <html
+      lang="en"
+      className={`${sora.variable} ${dmSans.variable} h-full scroll-smooth antialiased`}
+    >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

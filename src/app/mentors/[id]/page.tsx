@@ -1,13 +1,12 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { mentors } from "@/lib/data/mentors";
 import { services } from "@/lib/data/services";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
+import { PageHero, PageSection } from "@/components/ui/PageSection";
 import {
   Star,
   MapPin,
@@ -86,20 +85,29 @@ export default async function MentorProfilePage({ params }: MentorPageProps) {
   );
 
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-12">
+    <MarketingLayout>
+      <PageHero
+        eyebrow="Mentor profile"
+        title={mentor.name}
+        description={`${mentor.title} at ${mentor.university}. Dedicated support for admissions, strategy, and next-step planning.`}
+        meta={
+          <>
+            <Badge variant="primary">{mentor.country}</Badge>
+            <Badge>{mentor.languages.join(", ")}</Badge>
+          </>
+        }
+      />
+
+      <PageSection className="bg-white">
+        <div className="container-shell">
+          <div className="grid gap-12 lg:grid-cols-3">
               <div className="lg:col-span-2">
                 <div className="flex items-start gap-6 mb-8">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary font-display font-bold text-4xl shrink-0">
+                  <div className="flex h-24 w-24 items-center justify-center rounded-xl bg-blue-50 text-primary font-display text-4xl font-bold shrink-0">
                     {mentor.name.charAt(0)}
                   </div>
                   <div>
-                    <h1 className="text-3xl font-bold text-foreground mb-1">
+                    <h1 className="mb-1 text-3xl font-bold text-foreground">
                       {mentor.name}
                     </h1>
                     <p className="text-lg text-muted mb-3">{mentor.title}</p>
@@ -166,13 +174,10 @@ export default async function MentorProfilePage({ params }: MentorPageProps) {
                   </h2>
                   <div className="space-y-4">
                     {reviews.map((review) => (
-                      <div
-                        key={review.id}
-                        className="bg-slate-50 rounded-xl p-5 border border-border"
-                      >
+                      <div key={review.id} className="surface-card p-5">
                         <div className="flex items-center justify-between mb-2">
                           <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm font-semibold">
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-primary text-sm font-semibold">
                               {review.author.charAt(0)}
                             </div>
                             <span className="font-medium text-foreground text-sm">
@@ -204,10 +209,10 @@ export default async function MentorProfilePage({ params }: MentorPageProps) {
               </div>
 
               <div>
-                <div className="bg-slate-50 rounded-2xl border border-border p-6 sticky top-24">
+                <div className="surface-card sticky top-24 p-6">
                   <div className="text-center mb-6">
                     <div className="font-display font-bold text-3xl text-foreground mb-1">
-                      ${mentor.hourlyRate}
+                      {formatPrice(mentor.hourlyRate)}
                       <span className="text-lg text-muted font-normal">
                         /hr
                       </span>
@@ -245,16 +250,16 @@ export default async function MentorProfilePage({ params }: MentorPageProps) {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </div>
+      </PageSection>
 
         {mentorServices.length > 0 && (
-          <section className="py-16 lg:py-20 bg-slate-50/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <h2 className="text-2xl font-bold text-foreground mb-8">
+          <PageSection className="bg-slate-50/70">
+            <div className="container-shell">
+              <h2 className="mb-8 text-2xl font-bold text-foreground">
                 Services offered by {mentor.name.split(" ")[0]}
               </h2>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {mentorServices.map((service) => (
                   <Link key={service.id} href={`/services/${service.slug}`}>
                     <Card>
@@ -282,10 +287,8 @@ export default async function MentorProfilePage({ params }: MentorPageProps) {
                 ))}
               </div>
             </div>
-          </section>
+          </PageSection>
         )}
-      </main>
-      <Footer />
-    </>
+    </MarketingLayout>
   );
 }

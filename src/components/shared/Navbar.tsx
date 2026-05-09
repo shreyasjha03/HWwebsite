@@ -21,11 +21,11 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-white/92 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-white/85 backdrop-blur-xl">
       <nav className="container-shell">
         <div className="flex h-18 items-center justify-between gap-6 py-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-border bg-white">
+            <div className="relative h-11 w-11 overflow-hidden rounded-xl border border-border bg-white">
               <Image
                 src="/Logo HW 1.png"
                 alt="HumbleWalking"
@@ -37,13 +37,13 @@ export function Navbar() {
               <span className="block font-display text-lg font-semibold text-foreground">
                 HumbleWalking
               </span>
-              <span className="hidden text-xs text-muted md:block">
-                Global education planning
+              <span className="hidden text-xs text-slate-600 md:block">
+                One stop edtech solution
               </span>
             </div>
           </Link>
 
-          <div className="hidden items-center rounded-full border border-border bg-slate-50/80 p-1 lg:flex">
+          <div className="hidden items-center rounded-xl border border-border bg-slate-50 p-1 lg:flex">
             {navLinks.map((link) => {
               const active = pathname === link.href;
               return (
@@ -51,10 +51,10 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={
-                    "rounded-full px-4 py-2 text-sm font-medium " +
+                    "rounded-lg px-4 py-2 text-sm font-medium transition duration-200 " +
                     (active
                       ? "bg-white text-foreground shadow-sm"
-                      : "text-muted hover:text-foreground")
+                      : "text-slate-700 hover:bg-white hover:text-foreground")
                   }
                 >
                   {link.label}
@@ -64,7 +64,7 @@ export function Navbar() {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Link href="/dashboard" className="text-sm font-medium text-muted hover:text-foreground">
+            <Link href="/dashboard" className="text-sm font-medium text-slate-700 hover:text-foreground">
               Dashboard
             </Link>
             <Link href="/login">
@@ -79,7 +79,7 @@ export function Navbar() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-2xl border border-border p-2.5 text-muted hover:bg-slate-50 lg:hidden"
+            className="rounded-xl border border-border bg-white p-2.5 text-slate-700 hover:bg-slate-50 lg:hidden"
             aria-label="Toggle menu"
           >
             {isOpen ? <X size={22} /> : <Menu size={22} />}
@@ -102,7 +102,7 @@ export function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="block rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
                 >
                   {link.label}
                 </Link>
@@ -111,14 +111,14 @@ export function Navbar() {
                 <Link
                   href="/dashboard"
                   onClick={() => setIsOpen(false)}
-                  className="block rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/login"
                   onClick={() => setIsOpen(false)}
-                  className="block rounded-2xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
+                  className="block rounded-xl px-4 py-3 text-sm font-medium text-foreground hover:bg-slate-50"
                 >
                   Sign in
                 </Link>

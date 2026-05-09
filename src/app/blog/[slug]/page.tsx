@@ -1,10 +1,9 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { blogPosts } from "@/lib/data/blog";
 import { Badge } from "@/components/ui/Badge";
+import { PageSection } from "@/components/ui/PageSection";
 import { Calendar, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -43,12 +42,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <article className="py-16 lg:py-20">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <MarketingLayout>
+      <PageSection className="bg-white">
+        <article>
+          <div className="container-shell max-w-3xl">
             <Link
               href="/blog"
               className="inline-flex items-center gap-2 text-sm text-muted hover:text-primary transition-colors mb-8"
@@ -82,7 +79,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <span>by {post.author}</span>
             </div>
 
-            <div className="bg-gradient-to-br from-slate-100 to-slate-200 rounded-2xl h-64 lg:h-80 mb-12 flex items-center justify-center">
+            <div className="mb-12 flex h-64 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-slate-100 lg:h-80">
               <span className="text-7xl">📚</span>
             </div>
 
@@ -130,8 +127,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
         </article>
-      </main>
-      <Footer />
-    </>
+      </PageSection>
+    </MarketingLayout>
   );
 }

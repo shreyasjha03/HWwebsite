@@ -15,8 +15,8 @@ export function ServicesPreviewSection() {
       <div className="container-shell">
         <SectionHeading
           eyebrow="Popular services"
-          title="High-confidence support for the steps students usually get stuck on."
-          description="Each service is clearly scoped, priced, and designed to plug into a longer study abroad plan."
+          title="Support for the moments students usually get stuck."
+          description="Each service is clearly scoped, priced, and structured to fit into a broader study abroad plan."
           actions={
             <Link href="/services">
               <Button variant="outline">
@@ -29,26 +29,25 @@ export function ServicesPreviewSection() {
 
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {featuredServices.map((service) => (
-            <Card key={service.id} className="h-full">
+            <Card key={service.id} className="group h-full">
               <CardBody className="flex flex-col h-full justify-between">
                 <div>
                   <div className="mb-4 flex items-center justify-between gap-3">
                     <Badge variant="primary">{service.category}</Badge>
-                    {service.popular && (
-                      <Badge variant="warning">Popular</Badge>
-                    )}
+                    {service.popular && <Badge variant="warning">Popular</Badge>}
                   </div>
+                  <div className="gold-line mb-5 h-px w-14" />
                   <h3 className="mb-3 font-display text-xl font-semibold text-foreground">
                     {service.title}
                   </h3>
-                  <p className="text-sm leading-6 text-muted">
+                  <p className="text-sm leading-6 text-slate-600">
                     {service.description}
                   </p>
                 </div>
 
                 <div className="mt-6 flex items-center justify-between border-t border-border pt-5">
                   <div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-600">
                       Starting at
                     </p>
                     <p className="mt-1 text-xl font-semibold text-foreground">
@@ -56,7 +55,11 @@ export function ServicesPreviewSection() {
                     </p>
                   </div>
                   <Link href={`/services/${service.slug}`}>
-                    <Button variant="ghost" size="sm">
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="text-primary group-hover:bg-blue-50 group-hover:text-primary"
+                    >
                       View details
                       <ArrowRight size={16} />
                     </Button>

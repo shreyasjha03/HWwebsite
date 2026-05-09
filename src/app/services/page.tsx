@@ -62,7 +62,7 @@ function ServicesContent() {
         }
       />
 
-      <section className="sticky top-[72px] z-30 border-b border-border bg-white/94 backdrop-blur-xl">
+      <section className="sticky top-[72px] z-30 border-b border-border bg-white/90 backdrop-blur-xl">
         <div className="container-shell py-4">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex flex-wrap gap-2">
@@ -71,10 +71,10 @@ function ServicesContent() {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={
-                    "rounded-full px-4 py-2 text-sm font-medium " +
+                    "rounded-lg px-4 py-2 text-sm font-medium transition duration-200 " +
                     (selectedCategory === category
-                      ? "bg-slate-950 text-white"
-                      : "border border-border bg-white text-muted hover:text-foreground")
+                      ? "bg-primary text-white"
+                      : "border border-border bg-white text-muted hover:border-blue-200 hover:bg-blue-50 hover:text-primary")
                   }
                 >
                   {category}
@@ -113,12 +113,13 @@ function ServicesContent() {
           {filteredServices.length ? (
             <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filteredServices.map((service) => (
-                <Card key={service.id}>
+                <Card key={service.id} className="group">
                   <CardBody className="flex h-full flex-col">
                     <div className="mb-4 flex items-center justify-between gap-3">
                       <Badge variant="primary">{service.category}</Badge>
                       {service.popular ? <Badge variant="warning">Popular</Badge> : null}
                     </div>
+                    <div className="gold-line mb-5 h-px w-14" />
                     <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
                     <p className="mt-3 flex-1 text-sm leading-6 text-muted">{service.description}</p>
                     <div className="mt-5 space-y-2">
@@ -148,7 +149,7 @@ function ServicesContent() {
                         </p>
                       </div>
                       <Link href={`/services/${service.slug}`}>
-                        <Button variant="outline">
+                        <Button variant="outline" className="group-hover:bg-blue-50 group-hover:text-primary">
                           View details
                           <ArrowRight size={16} />
                         </Button>

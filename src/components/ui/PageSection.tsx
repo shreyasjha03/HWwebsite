@@ -36,7 +36,7 @@ export function SectionHeading({
           {title}
         </h2>
         {description ? (
-          <p className="text-base leading-7 text-muted sm:text-lg">{description}</p>
+          <p className="text-base leading-7 text-slate-700 sm:text-lg">{description}</p>
         ) : null}
       </div>
       {actions ? <div>{actions}</div> : null}
@@ -58,11 +58,12 @@ export function PageHero({
   actions?: React.ReactNode;
 }) {
   return (
-    <section className="border-b border-border bg-[radial-gradient(circle_at_top_left,_rgba(37,99,235,0.08),_transparent_38%),linear-gradient(180deg,_#ffffff_0%,_#f8fafc_100%)]">
+    <section className="relative overflow-hidden border-b border-border bg-[linear-gradient(180deg,#ffffff_0%,#f8fafc_100%)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(37,99,235,0.08),transparent_30%)]" />
       <div className="container-shell py-16 lg:py-20">
         <div className="max-w-3xl space-y-5">
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
-          <h1 className="text-4xl leading-tight font-semibold text-foreground sm:text-5xl">
+          <h1 className="text-4xl leading-tight font-semibold text-foreground sm:text-5xl lg:text-6xl">
             {title}
           </h1>
           <p className="max-w-2xl text-base leading-7 text-muted sm:text-lg">

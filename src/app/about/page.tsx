@@ -114,13 +114,13 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="surface-card bg-slate-950 p-8 text-white lg:p-10">
-            <p className="text-lg leading-8 text-slate-200">
+          <div className="surface-card p-8 lg:p-10">
+            <p className="text-lg leading-8 text-foreground/80">
               &ldquo;HumbleWalking helped me bring order to a process that felt overwhelming. The combination of mentor feedback and task structure made every next step obvious.&rdquo;
             </p>
             <div className="mt-6">
-              <p className="font-medium">Arjun Mehta</p>
-              <p className="text-sm text-slate-400">MBA admit, Wharton</p>
+              <p className="font-medium text-foreground">Arjun Mehta</p>
+              <p className="text-sm text-muted">MBA admit, Wharton</p>
             </div>
           </div>
         </div>
@@ -128,21 +128,21 @@ export default function AboutPage() {
 
       <PageSection>
         <div className="container-shell">
-          <div className="surface-card bg-slate-950 p-10 text-center text-white lg:p-14">
-            <p className="eyebrow text-slate-400">Next step</p>
-            <h2 className="mt-3 text-3xl font-semibold">See the redesigned experience in action.</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
+          <div className="surface-card p-10 text-center lg:p-14">
+            <p className="eyebrow">Next step</p>
+            <h2 className="mt-3 text-3xl font-semibold text-foreground">See the redesigned experience in action.</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted">
               Create an account, explore the dashboard, or talk to the team about the right support path.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/signup">
-                <Button variant="secondary" size="lg" className="bg-white text-slate-950 hover:bg-slate-100">
+                <Button size="lg">
                   Create account
                   <ArrowRight size={16} />
                 </Button>
               </Link>
               <Link href="/dashboard">
-                <Button variant="outline" size="lg" className="border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white">
+                <Button variant="outline" size="lg">
                   View dashboard
                 </Button>
               </Link>

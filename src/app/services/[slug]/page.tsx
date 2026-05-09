@@ -1,16 +1,14 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { services } from "@/lib/data/services";
 import { mentors } from "@/lib/data/mentors";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
+import { PageHero, PageSection } from "@/components/ui/PageSection";
 import {
   Check,
-  Clock,
   Star,
   ArrowRight,
   Shield,
@@ -82,60 +80,34 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
   ];
 
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl">
-              <Badge variant="primary" className="mb-4">
-                {service.category}
-              </Badge>
-              <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-                {service.title}
-              </h1>
-              <p className="text-lg text-muted leading-relaxed mb-6">
-                {service.description}
-              </p>
+    <MarketingLayout>
+      <PageHero
+        eyebrow={service.category}
+        title={service.title}
+        description={service.description}
+        meta={
+          <>
+            <Badge variant="primary">{service.rating} / 5</Badge>
+            <Badge>{service.reviews} reviews</Badge>
+            <Badge>{service.duration}</Badge>
+          </>
+        }
+        actions={
+          <>
+            <Button size="lg">{formatPrice(service.price)}</Button>
+            <Link href="/contact">
+              <Button variant="outline" size="lg">
+                Get started now
+                <ArrowRight size={18} className="ml-2" />
+              </Button>
+            </Link>
+          </>
+        }
+      />
 
-              <div className="flex flex-wrap items-center gap-6 mb-8">
-                <div className="flex items-center gap-2">
-                  <Star
-                    size={20}
-                    className="fill-amber-400 text-amber-400"
-                  />
-                  <span className="font-semibold text-foreground">
-                    {service.rating}
-                  </span>
-                  <span className="text-muted">
-                    ({service.reviews} reviews)
-                  </span>
-                </div>
-                <div className="flex items-center gap-2 text-muted">
-                  <Clock size={18} />
-                  <span>{service.duration}</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <span className="font-display font-bold text-4xl text-foreground">
-                  {formatPrice(service.price)}
-                </span>
-                <Link href="/contact">
-                  <Button variant="primary" size="lg">
-                    Get started now
-                    <ArrowRight size={18} className="ml-2" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 lg:py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-3 gap-12">
+      <PageSection className="bg-white">
+        <div className="container-shell">
+          <div className="grid gap-12 lg:grid-cols-3">
               <div className="lg:col-span-2">
                 <h2 className="text-2xl font-bold text-foreground mb-6">
                   What you get
@@ -143,7 +115,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 <div className="space-y-4 mb-12">
                   {service.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center mt-0.5 shrink-0">
+                      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-blue-100 bg-blue-50">
                         <Check size={14} className="text-primary" />
                       </div>
                       <span className="text-foreground">{feature}</span>
@@ -156,11 +128,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </h2>
                 <div className="grid sm:grid-cols-3 gap-6">
                   {guarantees.map((guarantee) => (
-                    <div
-                      key={guarantee.title}
-                      className="bg-slate-50 rounded-xl p-6 border border-border"
-                    >
-                      <div className="w-10 h-10 rounded-lg bg-primary-light text-primary flex items-center justify-center mb-4">
+                    <div key={guarantee.title} className="surface-card p-6">
+                      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg border border-blue-100 bg-blue-50 text-primary">
                         <guarantee.icon size={20} />
                       </div>
                       <h3 className="font-display font-semibold text-foreground mb-1">
@@ -175,7 +144,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
               </div>
 
               <div>
-                <div className="bg-slate-50 rounded-2xl border border-border p-6 sticky top-24">
+                <div className="surface-card sticky top-24 p-6">
                   <h3 className="font-display font-semibold text-lg text-foreground mb-4">
                     Service Summary
                   </h3>
@@ -227,12 +196,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+        </div>
+      </PageSection>
 
         {suggestedMentors.length > 0 && (
-          <section className="py-16 lg:py-20 bg-slate-50/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PageSection className="bg-slate-50/70">
+            <div className="container-shell">
               <div className="flex items-center gap-2 mb-8">
                 <Users size={20} className="text-primary" />
                 <h2 className="text-2xl font-bold text-foreground">
@@ -246,7 +215,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                     <Card>
                       <CardBody>
                         <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center text-primary font-display font-bold text-xl shrink-0">
+                          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-blue-50 text-primary font-display font-bold text-xl shrink-0">
                             {mentor.name.charAt(0)}
                           </div>
                           <div className="flex-1">
@@ -274,12 +243,12 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 ))}
               </div>
             </div>
-          </section>
+          </PageSection>
         )}
 
         {relatedServices.length > 0 && (
-          <section className="py-16 lg:py-20 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <PageSection className="bg-white">
+            <div className="container-shell">
               <h2 className="text-2xl font-bold text-foreground mb-8">
                 Related services
               </h2>
@@ -311,10 +280,8 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 ))}
               </div>
             </div>
-          </section>
+          </PageSection>
         )}
-      </main>
-      <Footer />
-    </>
+    </MarketingLayout>
   );
 }

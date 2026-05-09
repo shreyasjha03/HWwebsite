@@ -1,12 +1,11 @@
 "use client";
 
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { services } from "@/lib/data/services";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card, CardBody } from "@/components/ui/Card";
+import { PageHero, PageSection } from "@/components/ui/PageSection";
 import { Check, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
@@ -25,114 +24,108 @@ export default function PricingPage() {
   );
 
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto">
-              <Badge variant="primary" className="mb-4">
-                Pricing
-              </Badge>
-              <h1 className="text-3xl lg:text-5xl font-bold text-foreground mb-6">
-                Transparent, affordable pricing for every student
-              </h1>
-              <p className="text-lg text-muted">
-                Pick and choose services as you need them, or combine multiple
-                services for a customized study abroad package.
-              </p>
-            </div>
-          </div>
-        </section>
+    <MarketingLayout>
+      <PageHero
+        eyebrow="Pricing"
+        title="Transparent, affordable pricing for every student."
+        description="Pick and choose services as you need them, or combine multiple services for a more complete HumbleWalking support plan."
+        meta={
+          <>
+            <Badge variant="primary">{services.length} services</Badge>
+            <Badge>All prices in INR</Badge>
+          </>
+        }
+      />
 
-        <section className="py-20 lg:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            {Object.entries(groupedServices).map(([category, categoryServices]) => (
-              <div key={category} className="mb-16">
-                <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-8">
-                  {category}
-                </h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {categoryServices.map((service) => (
-                    <Card key={service.id}>
-                      <CardBody className="flex flex-col h-full">
-                        <div className="mb-4">
-                          {service.popular && (
-                            <Badge variant="warning" className="mb-3">
-                              Most Popular
-                            </Badge>
-                          )}
-                          <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                            {service.title}
-                          </h3>
-                          <p className="text-sm text-muted leading-relaxed">
-                            {service.description}
+      <PageSection className="bg-slate-50/70">
+        <div className="container-shell">
+          {Object.entries(groupedServices).map(([category, categoryServices]) => (
+            <div key={category} className="mb-16 last:mb-0">
+              <h2 className="mb-8 text-2xl font-semibold text-foreground lg:text-3xl">
+                {category}
+              </h2>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {categoryServices.map((service) => (
+                  <Card key={service.id} className="group">
+                    <CardBody className="flex flex-col h-full">
+                      <div className="mb-4">
+                        {service.popular && (
+                          <Badge variant="warning" className="mb-3">
+                            Most Popular
+                          </Badge>
+                        )}
+                        <div className="gold-line mb-4 h-px w-14" />
+                        <h3 className="mb-2 font-display text-lg font-semibold text-foreground">
+                          {service.title}
+                        </h3>
+                        <p className="text-sm leading-6 text-muted">
+                          {service.description}
+                        </p>
+                      </div>
+
+                      <div className="my-6 border-y border-border py-6">
+                        <div className="text-center">
+                          <span className="text-4xl font-semibold text-primary">
+                            {formatPrice(service.price, service.currency)}
+                          </span>
+                          <p className="mt-1 text-sm text-muted">
+                            One-time payment
                           </p>
                         </div>
+                      </div>
 
-                        <div className="my-6 py-6 border-y border-border">
-                          <div className="text-center">
-                            <span className="text-4xl font-bold text-primary">
-                              {formatPrice(service.price, service.currency)}
-                            </span>
-                            <p className="text-sm text-muted mt-1">
-                              One-time payment
-                            </p>
+                      <div className="mb-6 flex-1 space-y-3">
+                        {service.features.slice(0, 4).map((feature, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <Check size={18} className="mt-0.5 shrink-0 text-primary" />
+                            <span className="text-sm text-muted">{feature}</span>
                           </div>
-                        </div>
+                        ))}
+                      </div>
 
-                        <div className="space-y-3 mb-6 flex-1">
-                          {service.features.slice(0, 4).map((feature, idx) => (
-                            <div key={idx} className="flex items-start gap-3">
-                              <Check size={18} className="text-primary mt-0.5 shrink-0" />
-                              <span className="text-sm text-muted">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-
-                        <Link href={`/services/${service.slug}`}>
-                          <Button variant="primary" size="md" className="w-full">
-                            Learn more
-                            <ArrowRight size={16} className="ml-2" />
-                          </Button>
-                        </Link>
-                      </CardBody>
-                    </Card>
-                  ))}
-                </div>
+                      <Link href={`/services/${service.slug}`}>
+                        <Button variant="primary" size="md" className="w-full">
+                          Learn more
+                          <ArrowRight size={16} className="ml-2" />
+                        </Button>
+                      </Link>
+                    </CardBody>
+                  </Card>
+                ))}
               </div>
-            ))}
-          </div>
-        </section>
+            </div>
+          ))}
+        </div>
+      </PageSection>
 
-        <section className="py-20 lg:py-28 bg-slate-50">
-          <div className="max-w-3xl mx-auto px-4">
-            <h2 className="text-2xl lg:text-3xl font-bold text-foreground mb-8">
+      <PageSection className="bg-white">
+        <div className="container-shell">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="mb-8 text-2xl font-semibold text-foreground lg:text-3xl">
               Frequently asked questions
             </h2>
             <div className="space-y-4">
               {[
                 {
                   q: "Can I combine multiple services?",
-                  a: "Absolutely! Many students combine services like university shortlisting with IELTS prep or visa filing. We offer package discounts for multiple services.",
+                  a: "Absolutely. Many students combine university shortlisting with IELTS prep or visa filing, and we can structure a cleaner end-to-end support plan.",
                 },
                 {
                   q: "Is there a refund policy?",
-                  a: "Yes, we offer a 7-day money-back guarantee if you are not satisfied with our service. Simply contact our support team.",
+                  a: "Yes. We offer a 7-day money-back guarantee if you are not satisfied with the service experience.",
                 },
                 {
                   q: "Do you offer payment plans?",
-                  a: "Yes! For services above ₹15,000, we offer flexible EMI options through our partner financial institutions.",
+                  a: "Yes. For services above ₹15,000, flexible EMI options are available through partner financial institutions.",
                 },
                 {
                   q: "Are there any hidden charges?",
-                  a: "No hidden charges. The price you see is what you pay. Transparent pricing is our commitment.",
+                  a: "No hidden charges. The price displayed on HumbleWalking is the amount you pay.",
                 },
               ].map((faq, idx) => (
                 <Card key={idx}>
                   <CardBody>
-                    <h3 className="font-semibold text-foreground mb-2">
+                    <h3 className="mb-2 font-semibold text-foreground">
                       {faq.q}
                     </h3>
                     <p className="text-sm text-muted">{faq.a}</p>
@@ -141,9 +134,8 @@ export default function PricingPage() {
               ))}
             </div>
           </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </PageSection>
+    </MarketingLayout>
   );
 }

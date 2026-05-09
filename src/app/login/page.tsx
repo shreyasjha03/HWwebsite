@@ -11,15 +11,15 @@ export default function LoginPage() {
       <section className="section-space">
         <div className="container-shell">
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="surface-card bg-slate-950 p-8 text-white lg:p-10">
-              <Badge className="bg-white/10 text-white">Student workspace</Badge>
-              <h1 className="mt-6 text-4xl font-semibold">Welcome back.</h1>
-              <p className="mt-4 text-base leading-7 text-slate-300">
+            <div className="surface-card p-8 lg:p-10">
+              <Badge variant="primary">Student workspace</Badge>
+              <h1 className="mt-6 text-4xl font-semibold text-foreground">Welcome back.</h1>
+              <p className="mt-4 text-base leading-7 text-muted">
                 Sign in to manage your application timeline, mentor conversations, and pending service tasks.
               </p>
               <div className="mt-8 space-y-4">
                 {["Track deadlines in one place", "Review mentor feedback", "Keep documents and decisions organized"].map((item) => (
-                  <div key={item} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200">
+                  <div key={item} className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-muted">
                     {item}
                   </div>
                 ))}

@@ -16,22 +16,22 @@ export function Button({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-2xl font-medium whitespace-nowrap",
+        "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-medium",
         "focus:outline-none focus:ring-4 focus:ring-primary/15 disabled:pointer-events-none disabled:opacity-50",
         {
           primary:
             "bg-primary text-white shadow-sm hover:bg-primary-dark",
           secondary:
-            "bg-secondary text-secondary-foreground shadow-sm hover:bg-slate-800",
+            "bg-blue-50 text-primary shadow-sm hover:bg-blue-100",
           outline:
             "border border-border bg-white text-foreground hover:border-border-strong hover:bg-slate-50",
           ghost:
-            "bg-transparent text-muted hover:bg-slate-100 hover:text-foreground",
+            "bg-transparent text-slate-700 hover:bg-slate-100 hover:text-foreground",
         }[variant],
         {
           sm: "h-10 px-4 text-sm",
           md: "h-11 px-5 text-sm",
-          lg: "h-12 px-6 text-base",
+          lg: "h-12 px-6 text-[15px]",
         }[size],
         className
       )}

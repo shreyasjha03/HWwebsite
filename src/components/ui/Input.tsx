@@ -18,7 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           className={cn(
-            "w-full rounded-2xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-muted-foreground",
+            "w-full rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-slate-500",
             "focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10",
             error && "border-red-400 focus:ring-red-400/50",
             className
@@ -51,7 +51,7 @@ export function Textarea({
       )}
       <textarea
         className={cn(
-          "w-full resize-none rounded-2xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-muted-foreground",
+          "w-full resize-none rounded-xl border border-border bg-white px-4 py-3 text-sm text-foreground shadow-sm placeholder:text-muted-foreground",
           "focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10",
           error && "border-red-400 focus:ring-red-400/50",
           className

@@ -53,7 +53,7 @@ export function Footer() {
         <div className="grid gap-10 xl:grid-cols-[1.7fr_1fr_1fr_1fr]">
           <div>
             <Link href="/" className="inline-flex items-center gap-3 mb-4">
-              <div className="relative h-10 w-10 overflow-hidden rounded-2xl border border-border bg-white">
+              <div className="relative h-10 w-10 overflow-hidden rounded-xl border border-border bg-white">
                 <Image
                   src="/Logo HW 1.png"
                   alt="HumbleWalking"

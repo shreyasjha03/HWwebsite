@@ -1,9 +1,8 @@
-import { AnnouncementBar } from "@/components/shared/AnnouncementBar";
-import { Navbar } from "@/components/shared/Navbar";
-import { Footer } from "@/components/shared/Footer";
+import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { blogPosts } from "@/lib/data/blog";
 import { Badge } from "@/components/ui/Badge";
 import { Card, CardBody } from "@/components/ui/Card";
+import { PageHero, PageSection } from "@/components/ui/PageSection";
 import { Calendar, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -29,42 +28,30 @@ export default function BlogPage() {
   const otherPosts = blogPosts.slice(1);
 
   return (
-    <>
-      <AnnouncementBar />
-      <Navbar />
-      <main className="flex-1">
-        <section className="bg-gradient-to-b from-primary-light/50 to-white py-16 lg:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <Badge variant="primary" className="mb-4">
-              Blog
-            </Badge>
-            <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">
-              Insights & Guides
-            </h1>
-            <p className="text-lg text-muted max-w-2xl">
-              Expert advice, step-by-step guides, and the latest updates on
-              studying abroad.
-            </p>
-          </div>
-        </section>
+    <MarketingLayout>
+      <PageHero
+        eyebrow="Blog"
+        title="Insights and guides for every stage of the journey."
+        description="Expert advice, practical checklists, and clear breakdowns for students planning to study abroad."
+      />
 
-        <section className="py-8 lg:py-12 border-b border-border bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="border-b border-border bg-white">
+        <div className="container-shell py-8">
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
                   key={category}
-                  className="px-4 py-2 rounded-xl text-sm font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
+                  className="rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-blue-50 hover:text-primary"
                 >
                   {category}
                 </button>
               ))}
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="py-12 lg:py-16 bg-slate-50/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PageSection className="bg-slate-50/70">
+        <div className="container-shell">
             <Link href={`/blog/${featuredPost.slug}`} className="block mb-12">
               <Card hover={false}>
                 <div className="grid md:grid-cols-2 gap-0">
@@ -147,10 +134,8 @@ export default function BlogPage() {
                 </Link>
               ))}
             </div>
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </>
+        </div>
+      </PageSection>
+    </MarketingLayout>
   );
 }

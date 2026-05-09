@@ -12,7 +12,7 @@ export function Card({ children, className, hover = true }: CardProps) {
       className={cn(
         "surface-card overflow-hidden",
         hover &&
-          "transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-md",
+          "transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md",
         className
       )}
     >
